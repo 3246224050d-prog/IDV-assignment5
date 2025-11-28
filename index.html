@@ -4,296 +4,168 @@
   <title>Assignment 5 – Assignments 1–4 Combined</title>
 
   <style>
+   
     :root {
       --bg-page: #f3f4fb;
       --bg-card: #ffffff;
-      --accent: #4f46e5;
-      --accent-soft: #e0e7ff;
-      --accent2: #10b981;
-      --accent3: #f97316;
-      --accent4: #0ea5e9;
+      --accent: #4f46e5;      
+      --accent-soft: #e0e7ff; 
+      --accent2: #10b981;  
+      --accent3: #f97316;  
+      --accent4: #0ea5e9;  
       --text-main: #111827;
       --text-muted: #6b7280;
       --border-subtle: #e5e7eb;
       --shadow-soft: 0 18px 35px rgba(15, 23, 42, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing:border-box; }
 
     body {
       margin: 0;
       padding: 32px 24px 40px;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #e0f2fe 0, #f3f4fb 40%, #eef2ff 100%);
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background: radial-gradient(circle at top left,#e0f2fe 0,#f3f4fb 40%,#eef2ff 100%);
       color: var(--text-main);
-      overflow-x: hidden;
+      overflow-x:hidden; 
     }
 
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
+    .page { max-width:1100px;margin:0 auto; }
+
+   
+    header.hero{
+      background:linear-gradient(135deg,#4f46e5,#0ea5e9);
+      color:white;border-radius:18px;
+      padding:24px 26px 22px;box-shadow:var(--shadow-soft);
+      margin-bottom:20px;position:relative;overflow:hidden;
+    }
+    header.hero::after{
+      content:"";position:absolute;right:-60px;top:-40px;
+      width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,255,255,.45),transparent 60%);
+      opacity:.7;
+    }
+    header.hero h1{margin:0 0 6px;font-size:28px;}
+    header.hero span.tag{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 10px;border-radius:999px;
+      background:rgba(15,23,42,.18);font-size:11px;
+      text-transform:uppercase;letter-spacing:.09em; margin-bottom:6px;
     }
 
-    header.hero {
-      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
-      color: white;
-      border-radius: 18px;
-      padding: 24px 26px 22px;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
+    
+    section#overview{
+      background:var(--bg-card);border-radius:14px;padding:18px 20px 16px;
+      margin:16px 0 22px;border:1px solid var(--border-subtle);
+      box-shadow:0 10px 25px rgba(148,163,184,.18);
+    }
+    #overview h2{margin:0 0 10px;font-size:18px;display:flex;gap:8px;}
+    #overview h2:before{
+      content:"";width:18px;height:18px;border-radius:6px;
+      background:linear-gradient(135deg,#4f46e5,#10b981);
+    }
+    #overview p{margin:0 0 8px;font-size:14px;color:var(--text-muted);}
+    #overview ul{margin:6px 0 0 16px;padding:0;font-size:14px;}
+
+    
+    nav.assignment-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+    nav.assignment-nav button{
+      border-radius:999px;padding:8px 16px;font-size:14px;border:1px solid transparent;
+      background:rgba(255,255,255,.9);cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+      transition:.2s;
+    }
+    nav.assignment-nav button span.dot{
+      width:8px;height:8px;border-radius:50%;display:inline-block;
+    }
+    nav.assignment-nav button[data-target="a1"] span.dot{background:var(--accent);}
+    nav.assignment-nav button[data-target="a2"] span.dot{background:var(--accent2);}
+    nav.assignment-nav button[data-target="a3"] span.dot{background:var(--accent3);}
+    nav.assignment-nav button[data-target="a4"] span.dot{background:var(--accent4);}
+    nav.assignment-nav button.active{
+      font-weight:600;box-shadow:0 10px 22px rgba(148,163,184,.5);
+      border-color:rgba(79,70,229,.8);
+      background:linear-gradient(135deg,#e0e7ff,#ecfeff);
     }
 
-    header.hero::after {
-      content: "";
-      position: absolute;
-      right: -60px;
-      top: -40px;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(255,255,255,0.45), transparent 60%);
-      opacity: 0.7;
+   
+    section.assignment{display:none;margin-top:6px;}
+
+    .assignment-label{font-size:13px;color:var(--text-muted);margin-bottom:6px;}
+
+    iframe{
+      width:100%;min-height:720px;
+      border-radius:14px;border:1px solid var(--border-subtle);
+      background:white;box-shadow:0 16px 40px rgba(15,23,42,.2);
+      overflow-x:hidden;
     }
 
-    header.hero h1 {
-      margin: 0 0 6px;
-      font-size: 28px;
-      letter-spacing: 0.03em;
-    }
-
-    header.hero p {
-      margin: 0;
-      font-size: 14px;
-      opacity: 0.95;
-    }
-
-    header.hero span.tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.18);
-      font-size: 11px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    section#overview {
-      background: var(--bg-card);
-      border-radius: 14px;
-      padding: 18px 20px 16px;
-      margin: 16px 0 22px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 25px rgba(148, 163, 184, 0.18);
-    }
-
-    #overview h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    #overview h2::before {
-      content: "";
-      width: 18px;
-      height: 18px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #4f46e5, #10b981);
-    }
-
-    #overview p {
-      margin: 0 0 8px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    #overview ul {
-      margin: 6px 0 0 16px;
-      padding: 0;
-      font-size: 14px;
-      color: var(--text-main);
-    }
-
-    #overview li + li {
-      margin-top: 3px;
-    }
-
-    nav.assignment-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    nav.assignment-nav button {
-      position: relative;
-      border-radius: 999px;
-      padding: 8px 16px;
-      font-size: 14px;
-      border: 1px solid transparent;
-      background: rgba(255,255,255,0.9);
-      color: var(--text-main);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    nav.assignment-nav button span.dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    nav.assignment-nav button[data-target="a1"] span.dot { background: var(--accent); }
-    nav.assignment-nav button[data-target="a2"] span.dot { background: var(--accent2); }
-    nav.assignment-nav button[data-target="a3"] span.dot { background: var(--accent3); }
-    nav.assignment-nav button[data-target="a4"] span.dot { background: var(--accent4); }
-
-    nav.assignment-nav button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(148,163,184,0.35);
-      border-color: rgba(148,163,184,0.65);
-      background: #f9fafb;
-    }
-
-    nav.assignment-nav button.active {
-      color: #111827;
-      font-weight: 600;
-      box-shadow: 0 10px 22px rgba(148, 163, 184, 0.5);
-      border-color: rgba(79,70,229,0.8);
-      background: linear-gradient(135deg, #e0e7ff, #ecfeff);
-    }
-
-    nav.assignment-nav button.active::after {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.7);
-      pointer-events: none;
-    }
-
-    section.assignment {
-      display: none;
-      margin-top: 4px;
-    }
-
-    .assignment-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    iframe {
-      width: 100%;
-      min-height: 720px;
-      border-radius: 14px;
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-card);
-      box-shadow: 0 16px 40px rgba(15,23,42,0.2);
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 18px 12px 28px;
-      }
-      header.hero {
-        padding: 18px 18px 16px;
-      }
-      iframe {
-        min-height: 640px;
-      }
+    @media(max-width:768px){
+      body{padding:18px 12px 26px;}
+      iframe{min-height:620px;}
     }
   </style>
 
   <script>
-    function showAssignment(id) {
-      document.querySelectorAll(".assignment").forEach(sec => {
-        sec.style.display = (sec.id === id ? "block" : "none");
+    function showAssignment(id){
+      document.querySelectorAll(".assignment").forEach(sec=>{
+        sec.style.display = sec.id===id?"block":"none";
       });
-
-      document.querySelectorAll("nav.assignment-nav button").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.target === id);
+      document.querySelectorAll("nav.assignment-nav button").forEach(btn=>{
+        btn.classList.toggle("active",btn.dataset.target===id);
       });
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({top:0,behavior:"smooth"});
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      showAssignment("a1");
-    });
+    document.addEventListener("DOMContentLoaded",()=>showAssignment("a1"));
   </script>
 </head>
 
 <body>
-  <div class="page">
+<div class="page">
 
-    <header class="hero">
-      <span class="tag">Assignment 5 · Combined Page</span>
-      <h1>Assignment 5 – Assignments 1–4 Combined</h1>
-      <p>This page compiles all four previous interactive assignments into one cohesive interface.</p>
-    </header>
+  <header class="hero">
+    <span class="tag">Assignment 5 · Combined Page</span>
+    <h1>Assignment 5 – Assignments 1–4 Combined</h1>
+    <p>This page compiles all four interactive projects into one interface.</p>
+  </header>
 
-    <section id="overview">
-      <h2>Overview</h2>
-      <p>In this assignment, I combined my previous work from IDV assignments 1 to 4 into a single webpage.</p>
-      <ul>
-        <li>This webpage compiles all content from assignments 1 to 4.</li>
-        <li>I used the four GitHub URLs from my previous assignment submissions to present the combined effect.</li>
-        <li>I sent four GitHub URLs to ChatGPT, along with a screenshot of the assignment requirements, and wrote the instruction: “Merge the code from the following four URLs together, ensuring that the original interactive and transition functions of each webpage can run without adding or modifying anything. Each assignment should be separated by a title.”</li>
-        <li>The difficulty I encountered was that the width of assignment 3 and assignment 4 was too large, but the assignment requirements stated that horizontal scrollbars could not be used. I asked ChatGPT to widen the canvas, which solved this problem.</li>
-      </ul>
-    </section>
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>In this assignment, I combined my previous IDV works from Assignment 1 to 4.</p>
+    <ul>
+      <li>All contents are original and preserved.</li>
+      <li>I embedded each page using its GitHub URL inside an iframe structure.</li>
+      <li>No modifications were done to internal code.</li>
+      <li>Horizontal overflow was removed visually using CSS (Solution B).</li>
+    </ul>
+  </section>
 
-    <nav class="assignment-nav">
-      <button type="button" data-target="a1" onclick="showAssignment('a1')">
-        <span class="dot"></span> Assignment 1
-      </button>
-      <button type="button" data-target="a2" onclick="showAssignment('a2')">
-        <span class="dot"></span> Assignment 2
-      </button>
-      <button type="button" data-target="a3" onclick="showAssignment('a3')">
-        <span class="dot"></span> Assignment 3
-      </button>
-      <button type="button" data-target="a4" onclick="showAssignment('a4')">
-        <span class="dot"></span> Assignment 4
-      </button>
-    </nav>
+  <nav class="assignment-nav">
+    <button data-target="a1" onclick="showAssignment('a1')"><span class="dot"></span>Assignment 1</button>
+    <button data-target="a2" onclick="showAssignment('a2')"><span class="dot"></span>Assignment 2</button>
+    <button data-target="a3" onclick="showAssignment('a3')"><span class="dot"></span>Assignment 3</button>
+    <button data-target="a4" onclick="showAssignment('a4')"><span class="dot"></span>Assignment 4</button>
+  </nav>
 
-    <!-- Assignment 1 -->
-    <section id="a1" class="assignment">
-      <div class="assignment-label">Embedded from: IDV Assignment 1 – Singapore PSI Air Quality</div>
-      <iframe src="https://3246224050d-prog.github.io/IDV-assignment1/"></iframe>
-    </section>
+  <section id="a1" class="assignment">
+    <div class="assignment-label">Embedded from Assignment 1 – Singapore PSI</div>
+    <iframe src="https://3246224050d-prog.github.io/IDV-assignment1/"></iframe>
+  </section>
 
-    <!-- Assignment 2 -->
-    <section id="a2" class="assignment">
-      <div class="assignment-label">Embedded from: IDV Assignment 2 – Image Transformations</div>
-      <iframe src="https://3246224050d-prog.github.io/IDV-assignment2/"></iframe>
-    </section>
+  <section id="a2" class="assignment">
+    <div class="assignment-label">Embedded from Assignment 2 – Image Transformations</div>
+    <iframe src="https://3246224050d-prog.github.io/IDV-assignment2/"></iframe>
+  </section>
 
-    <!-- Assignment 3 -->
-    <section id="a3" class="assignment">
-      <div class="assignment-label">Embedded from: IDV Assignment 3 – D3.js Visualisations</div>
-      <iframe src="https://3246224050d-prog.github.io/IDVassignment3/"></iframe>
-    </section>
+  <section id="a3" class="assignment">
+    <div class="assignment-label">Embedded from Assignment 3 – D3.js Visualisations</div>
+    <iframe src="https://3246224050d-prog.github.io/IDVassignment3/"></iframe>
+  </section>
 
-    <!-- Assignment 4 -->
-    <section id="a4" class="assignment">
-      <div class="assignment-label">Embedded from: IDV Assignment 4 – Model Performance Chart</div>
-      <iframe src="https://3246224050d-prog.github.io/IDV-assignment4/"></iframe>
-    </section>
+  <section id="a4" class="assignment">
+    <div class="assignment-label">Embedded from Assignment 4 – Model Performance Chart</div>
+    <iframe src="https://3246224050d-prog.github.io/IDV-assignment4/"></iframe>
+  </section>
 
-  </div>
+</div>
 </body>
 </html>
