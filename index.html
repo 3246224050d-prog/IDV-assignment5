@@ -208,8 +208,14 @@
       border: 1px solid var(--border-subtle);
       background: var(--bg-card);
       box-shadow: 0 16px 40px rgba(15,23,42,0.2);
-      /* 这里是外层 iframe 自己的滚动控制 */
-      overflow-x: hidden; 
+    }
+
+    /* ⭐ 方案 B：只对 Assignment3 做缩放，保证内容完整且不超出产生横向滚动条 */
+    #a3 iframe {
+      transform: scale(0.85);
+      transform-origin: top left;
+      width: 117.7%;   /* 约等于 1 / 0.85，抵消缩放带来的缩短，让内容刚好铺满 */
+      height: 850px;   /* 比默认高度高一点，避免上下被裁切，可以按实际再微调 */
     }
 
     /* 小屏幕适配 */
@@ -244,24 +250,6 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       showAssignment("a1"); // 默认展示 Assignment 1
-
-      // ⭐ 方案 B：针对 assignment3 的 iframe，干掉内部横向滚动条
-      const iframe3 = document.querySelector('#a3 iframe');
-      if (iframe3) {
-        iframe3.addEventListener('load', () => {
-          try {
-            const doc = iframe3.contentDocument || iframe3.contentWindow.document;
-            if (!doc) return;
-            const html = doc.documentElement;
-            const body = doc.body;
-            if (html) html.style.overflowX = 'hidden';
-            if (body) body.style.overflowX = 'hidden';
-          } catch (e) {
-            // 如果同源有问题就忽略（但你这几个都是同一个 GitHub Pages 域，一般没问题）
-            console.warn('Cannot access iframe content for assignment3:', e);
-          }
-        });
-      }
     });
   </script>
 </head>
